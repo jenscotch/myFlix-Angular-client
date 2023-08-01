@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<app-top-bar></app-top-bar>
+<div style="display: flex; flex-wrap: wrap; width: 100%; overflow: auto;">
+<mat-card *ngFor="let movie of movies;" style="flex: 1 1 auto; margin: 1rem;" >
+    <mat-card-header>
+        <mat-card-title>{{movie.Title}}</mat-card-title>
+        <mat-card-subtitle>Year: {{movie.Year}}</mat-card-subtitle>
+        <mat-card-subtitle>Cast: {{movie.Actors}}</mat-card-subtitle>
+        <mat-card-subtitle>Directed by: {{movie.Director.Name}}</mat-card-subtitle>
+        <mat-card-subtitle><img src="{{movie.Image}}" alt="{{movie.Title}}"/></mat-card-subtitle>
+    </mat-card-header>
+        <mat-card-actions>
+            <button
+                mat-icon-button
+                color="primary"
+                (click)="openGenre(movie.Genre.Name, movie.Genre.Description)"
+                matTooltip="Genre"
+            >
+            <mat-icon>description</mat-icon>
+            </button>
+            
+            <button
+                mat-icon-button
+                color="primary"
+                (click)="openDirector(movie.Director.Name, movie.Director.Bio)"
+                matTooptip="Director"
+            >
+            <mat-icon>person</mat-icon>
+            </button>
+            <button
+                mat-icon-button
+                color="primary"
+                (click)="openSynopsis(movie.Description)"
+                matTooltip="Synopsis"
+            >
+            <mat-icon>info</mat-icon>
+            </button>
+            <button 
+                *ngIf="!isFavorite(movie._id)"
+                mat-icon-button
+                (click)="addFavorite(movie._id)"
+                color="primary"
+                matTooltip="Add to favorites"
+            >
+            <mat-icon>favorite_border</mat-icon>
+            </button>
+            <button
+                *ngIf="isFavorite(movie._id)"
+                mat-icon-button
+                (click)="removeFavorite(movie._id)"
+                color="primary"
+                matTooltip="Remove from favorites"
+            >
+            <mat-icon>favorite</mat-icon>
+            </button>
+        </mat-card-actions>
+</mat-card>
+</div>

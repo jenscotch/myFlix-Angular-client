@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<app-top-bar></app-top-bar>
+
+<div style="padding:1rem">
+    <h1>Profile</h1>
+        <p>Username: {{user.Name}}</p>
+        <p>Email: {{user.Email}}</p>
+
+    <h2>Favorite Movies</h2>
+    <mat-card class="movies">
+        <mat-card-header *ngFor="let movie of favoriteMovies" style="flex: 1 1 auto; flex-wrap: wrap; padding: 1rem;"> 
+            <mat-card-subtitle> <img src="{{movie.Image}}"/></mat-card-subtitle>
+            <mat-card-title>{{movie.Title}}</mat-card-title>
+        </mat-card-header>
+    </mat-card>
+    <h2>Update Profile</h2>
+    <form class="profile-form">
+        <mat-form-field>
+            <input 
+                matInput
+                [(ngModel)]="userData.Password"
+                minlength="8"
+                type="password"
+                placeholder="Password"
+                name="Password"
+            >
+        </mat-form-field>
+        <mat-form-field>
+            <input
+                matInput
+                [(ngModel)]="userData.Email"
+                type="email"
+                placeholder="Email"
+                name="Email"
+            >
+        </mat-form-field>
+        <mat-form-field>
+            <input
+                matInput
+                [(ngModel)]="userData.Birthday"
+                type="date"
+                placeholder="Birthday"
+                name="Birthday"
+            >
+        </mat-form-field>
+    </form>
+    <button 
+        mat-raised-button 
+        (click)="editUser()"
+        color="primary"
+    >Update</button>
+</div>

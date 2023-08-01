@@ -5,7 +5,7 @@ import { Observable, throwError } from 'rxjs';
 
 
 //declaring the api url that will provide data for the client app
-const apiUrl = 'YOUR_HOSTED_API_URL_HERE/';
+const apiUrl = 'https://jens-movie-api.herokuapp.com/';
 @Injectable({
   providedIn: 'root'
 })
@@ -91,13 +91,13 @@ getUser(): Observable<any> {
 getFavoriteMovies(): Observable<any> {
   const user = JSON.parse(localStorage.getItem('user') || '{}');
   const token = localStorage.getItem('token');
-  return this.http.get(apiUrl + 'users/' + user.Username, {
+  return this.http.get(apiUrl + 'users/' + user.Name, {
     headers: new HttpHeaders(
       {
         Authorization: 'Bearer' + token,
       })}).pipe(
         map(this.extractResponseData),
-        map((data) => data.FavoriteMovies),
+        map((data) => data.Movies),
         catchError(this.handleError)
       );
 }
@@ -106,9 +106,9 @@ getFavoriteMovies(): Observable<any> {
 addFavoriteMovie(movieId: string): Observable<any> {
   const user = JSON.parse(localStorage.getItem('user') || '{}');
   const token = localStorage.getItem('token');
-  user.FavoriteMovies.push(movieId);
+  user.Movies.push(movieId);
   localStorage.setItem('user', JSON.stringify(user));
-  return this.http.post(apiUrl + 'users/' + user.Username + '/movies/' + movieId, {}, {
+  return this.http.post(apiUrl + 'users/' + user.Name + '/movies/' + movieId, {}, {
     headers: new HttpHeaders(
       {
         Authorization: 'Bearer' + token,
@@ -122,14 +122,14 @@ addFavoriteMovie(movieId: string): Observable<any> {
 
 isFavoriteMovie(movieId: string): boolean {
   const user = JSON.parse(localStorage.getItem('user') || '{}');
-  return user.FavoriteMovies.indexOf(movieId) >= 0;
+  return user.Movies.indexOf(movieId) >= 0;
 }
 
 //api call for edit user endpoint
 editUser(updatedUser: any): Observable<any> {
   const user = JSON.parse(localStorage.getItem('user') || '{}');
   const token = localStorage.getItem('token');
-  return this.http.put(apiUrl + 'users/' + user.Username, updatedUser, {
+  return this.http.put(apiUrl + 'users/' + user.Name, updatedUser, {
     headers: new HttpHeaders(
       {
         Authorization: 'Bearer' + token,
@@ -156,13 +156,13 @@ deleteUser(): Observable<any> {
 deleteFavoriteMovie(movieId: string): Observable<any> {
   const user = JSON.parse(localStorage.getItem('user') || '{}');
   const token = localStorage.getItem('token');
-  const index = user.FavoriteMovies.indecOf(movieId);
+  const index = user.Movies.indexOf(movieId);
   console.log(index);
   if (index > -1) {
-    user.FavoriteMovies.splice(index, 1);
+    user.Movies.splice(index, 1);
   }
   localStorage.setItem('user', JSON.stringify(user));
-  return this.http.delete(apiUrl + 'users/' + user.Username + '/movies/' + movieId, {
+  return this.http.delete(apiUrl + 'users/' + user.Name + '/movies/' + movieId, {
     headers: new HttpHeaders(
       {
         Authorization: 'Bearer' + token,
