@@ -23,6 +23,7 @@ export class FetchApiDataService {
   }
 
   //making the api call for the login endpoint
+  //http.post use axios
   public userLogin(userDetails: any): Observable<any> {
     console.log(userDetails);
     return this.http.post(apiUrl + 'login', userDetails).pipe(

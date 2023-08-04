@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 
 <app-top-bar></app-top-bar>
-<div style="display: flex; flex-wrap: wrap; width: 100%; overflow: auto;">
-<mat-card *ngFor="let movie of movies;" style="flex: 1 1 auto; margin: 1rem;" >
+<div style="display: flex; flex-wrap: wrap; width: 100%; overflow: auto; word-break: break-all;">
+<mat-card *ngFor="let movie of movies;" class="h-100 col-lg-3 col-md-2" style="margin: 1rem; flex-direction: column" >
     <mat-card-header>
-        <mat-card-title>{{movie.Title}}</mat-card-title>
-        <mat-card-subtitle>Year: {{movie.Year}}</mat-card-subtitle>
-        <mat-card-subtitle>Cast: {{movie.Actors}}</mat-card-subtitle>
-        <mat-card-subtitle>Directed by: {{movie.Director.Name}}</mat-card-subtitle>
-        <mat-card-subtitle><img src="{{movie.Image}}" alt="{{movie.Title}}"/></mat-card-subtitle>
+        <mat-card-title style="text-align: center; padding: 5px;">{{movie.Title}}</mat-card-title>
+        <mat-card-subtitle style="text-align: center; padding: 5px;">Year: {{movie.Year}}</mat-card-subtitle>
+        <mat-card-subtitle style="text-align: center; padding: 5px;">Directed by: {{movie.Director.Name}}</mat-card-subtitle>
+        <mat-card-subtitle style="padding: 8px;"><img src="{{movie.Image}}" alt="{{movie.Title}}"/></mat-card-subtitle>
     </mat-card-header>
         <mat-card-actions>
             <button
@@ -23,8 +22,8 @@
             <button
                 mat-icon-button
                 color="primary"
-                (click)="openDirector(movie.Director.Name, movie.Director.Bio)"
-                matTooptip="Director"
+                (click)="openActors(movie.Actors)"
+                matTooptip="Actors"
             >
             <mat-icon>person</mat-icon>
             </button>

@@ -47,6 +47,15 @@ openDirector(Name: string, Bio: string): void {
   });
 }
 
+openActors(Actors: string): void {
+  this.dialog.open(MovieInfoComponent, {
+    data: {
+      title: 'Cast',
+      content: Actors
+    }
+  })
+}
+
 openSynopsis(Description: string): void {
   this.dialog.open(MovieInfoComponent, {
     data: {
