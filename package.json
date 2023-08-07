@@ -4,10 +4,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --base-href=https://jenscotch.github.io/myFlix-Angular-client/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "deploy": "ng deploy --base-href=/myFlix-Angular-client/"
+    "deploy": "ng deploy"
   },
   "private": true,
   "dependencies": {
