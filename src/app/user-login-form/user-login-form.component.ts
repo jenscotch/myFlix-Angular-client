@@ -22,7 +22,9 @@ export class UserLoginFormComponent implements OnInit {
 
 ngOnInit(): void {
 }
-
+/**
+ * allows user to login using info stored in api
+ */
 loginUser(): void {
   this.fetchApiData.userLogin(this.userData).subscribe((result) => {
     this.dialogRef.close();

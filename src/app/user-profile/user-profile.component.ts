@@ -22,10 +22,16 @@ export class UserProfileComponent implements OnInit {
     private router: Router
   ) { }
 
+/**
+ * initializes getUser command 
+ */
+
 ngOnInit(): void {
   this.getUser();
 }
-
+/**
+ * gets user's account info and fav movies from the api
+ */
 getUser(): void {
   this.user = this.fetchApiData.getUser();
   this.userData.Name = this.user.Name;
@@ -37,6 +43,9 @@ getUser(): void {
   });
 }
 
+/**
+ * allows user to edit info stored in the api
+ */
 editUser(): void {
   this.fetchApiData.editUser(this.userData).subscribe((result) => {
     localStorage.setItem('user', JSON.stringify(result));
@@ -51,6 +60,9 @@ editUser(): void {
   });
 }
 
+/**
+ * deletes user's account & all info
+ */
 deleteUser(): void {
   this.fetchApiData.deleteUser().subscribe((result) => {
     localStorage.clear();

@@ -7,7 +7,10 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./movie-info.component.scss']
 })
 export class MovieInfoComponent implements OnInit {
-
+/**
+ * fetches movie data from the api
+ * @param data - data/info for the selected movie
+ */
   constructor(
     @Inject(MAT_DIALOG_DATA)
     public data: {
