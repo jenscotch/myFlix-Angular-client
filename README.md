@@ -1,6 +1,6 @@
 # MyFlixAngularClient
 
-jens-flix-angular.netlify.app
+[jens-flix-angular.netlify.app](https://jens-flix-angular.netlify.app/)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.6.
 
